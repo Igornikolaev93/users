@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM</title>
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="style/style.css">
+    <script  defer type="module"  src="main.js"></script>
+</head>
+<body>
+<header class="header">
+<div class="container find">
+    <img class="skb" src="img/skb.png" title="Логотип">
+    <input class="form__find"  type="text" id="find" placeholder="Введите запрос">
+</div>
+</header>
+<div class="container" id="container">
+    <table class="table mt-3" id="table">
+        <thead class="head">
+            <th class="head__item"> ID <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 6L2.705 6.705L5.5 3.915L5.5 10L6.5 10L6.5 3.915L9.29 6.71L10 6L6 2L2 6Z" fill="#9873FF" />
+              </svg></th>
+            <th class="head__item"> Фамилия имя отчество  </th>
+            <th class="head__item"> Дата и время создания <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g opacity="0.7" clip-path="url(#clip0_221_919)">
+                  <path d="M10 6L9.295 5.295L6.5 8.085L6.5 2H5.5L5.5 8.085L2.71 5.29L2 6L6 10L10 6Z" fill="#9873FF" />
+                </g>
+              </svg> A-Я </th>
+            <th class="head__item"> Последние изменения <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g opacity="0.7" clip-path="url(#clip0_221_919)">
+                  <path d="M10 6L9.295 5.295L6.5 8.085L6.5 2H5.5L5.5 8.085L2.71 5.29L2 6L6 10L10 6Z" fill="#9873FF" />
+                </g>
+              </svg> </th>
+            <th class="head__item"> Контакты </th>
+            <th class="head__item"> Действия </th>
+            <th class="head__item">  </th>
+        </thead>
+        <tbody id="list"></tbody>
+    </table>
+    <button class="add" id="add"> <img class="add__plus" src="img/plus.png"> Добавить клиента </button>
+</div>
+
+<form class="modal" id="myModal">
+  <div class="modal-content" id="modal-content">
+    <span class="close">&times;</span>
+    <h2>Новый клиент</h2>
+    <div class="form__item" id="form__item">
+      <div class="form_container" id="form_container">
+      <input class="form__element" type="text" id="name" placeholder="Имя *">
+      <input class="form__element" type="text" id="surname" placeholder="Фамилия *">
+      <input class="form__element" type="text" id="lastName" placeholder="Отчество *">
+      </div>
+      <div class="modal__buttons" id="modal__buttons">
+        <form class="form__contact" id="form__contact" method="post" >
+          <div class="contacts__form" id="contacts__form">
+          <select class="contact" id="contact">
+            <option type="telephone">Телефон</option>
+            <option type="Email">Почта</option>
+            <option type="vk">VK</option>
+            <option type="facebook">Facebook</option>
+            <option type="dop">Дополнительно</option>
+          </select>
+          <input class="select__val" type="text" placeholder="" id="contacts">
+          <button class="contact__cancel"> Удалить </button>
+        </div>
+        </form>
+      <div class="background__adds">
+        <button class="adds" id="adds"> <svg id="contact__plus" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.99998 3.66659C6.63331 3.66659 6.33331 3.96659 6.33331 4.33325V6.33325H4.33331C3.96665 6.33325 3.66665 6.63325 3.66665 6.99992C3.66665 7.36659 3.96665 7.66659 4.33331 7.66659H6.33331V9.66659C6.33331 10.0333 6.63331 10.3333 6.99998 10.3333C7.36665 10.3333 7.66665 10.0333 7.66665 9.66659V7.66659H9.66665C10.0333 7.66659 10.3333 7.36659 10.3333 6.99992C10.3333 6.63325 10.0333 6.33325 9.66665 6.33325H7.66665V4.33325C7.66665 3.96659 7.36665 3.66659 6.99998 3.66659ZM6.99998 0.333252C3.31998 0.333252 0.333313 3.31992 0.333313 6.99992C0.333313 10.6799 3.31998 13.6666 6.99998 13.6666C10.68 13.6666 13.6666 10.6799 13.6666 6.99992C13.6666 3.31992 10.68 0.333252 6.99998 0.333252ZM6.99998 12.3333C4.05998 12.3333 1.66665 9.93992 1.66665 6.99992C1.66665 4.05992 4.05998 1.66659 6.99998 1.66659C9.93998 1.66659 12.3333 4.05992 12.3333 6.99992C12.3333 9.93992 9.93998 12.3333 6.99998 12.3333Z" fill="#9873FF" />
+        </svg> Добавить контакт</button>
+      </div>
+      <button class="save" id="save"> Сохранить </button>
+      <button class="cancel" id="cancel"> Отмена </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<form class="modal" id="myModal-change">
+  <div class="modal-content" id="modal-content-change">
+    <span class="close" id="close">&times;</span>
+    <h2>Изменить данные</h2>
+    <div class="form__item" id="form__item-change">
+      <div class="form_container" id="form_container-change">
+      <input class="form__element" type="text" id="name-change" placeholder="Имя *">
+      <input class="form__element" type="text" id="surname-change" placeholder="Фамилия *">
+      <input class="form__element" type="text" id="lastName-change" placeholder="Отчество *">
+      </div>
+      <div class="modal__buttons" id="modal__buttons-change">
+        <form class="form__contact" id="form__contact2" method="post" >
+          <div class="contacts__form" id="contacts__form-change">
+          <select class="contact">
+            <option class="opt" type="telephone">Телефон</option>
+            <option class="opt" type="Email">Почта</option>
+            <option class="opt" type="vk">VK</option>
+            <option class="opt" type="facebook">Facebook</option>
+            <option class="opt" type="dop">Дополнительно</option>
+          </select>
+          <input class="select__val two" type="text" placeholder="" id="contacts-change">
+          <button class="contact__cancel"> Удалить </button>
+        </div>
+        </form>
+      <div class="background__adds">
+        <button class="adds" id="adds-change"> <svg id="contact__plus2" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.99998 3.66659C6.63331 3.66659 6.33331 3.96659 6.33331 4.33325V6.33325H4.33331C3.96665 6.33325 3.66665 6.63325 3.66665 6.99992C3.66665 7.36659 3.96665 7.66659 4.33331 7.66659H6.33331V9.66659C6.33331 10.0333 6.63331 10.3333 6.99998 10.3333C7.36665 10.3333 7.66665 10.0333 7.66665 9.66659V7.66659H9.66665C10.0333 7.66659 10.3333 7.36659 10.3333 6.99992C10.3333 6.63325 10.0333 6.33325 9.66665 6.33325H7.66665V4.33325C7.66665 3.96659 7.36665 3.66659 6.99998 3.66659ZM6.99998 0.333252C3.31998 0.333252 0.333313 3.31992 0.333313 6.99992C0.333313 10.6799 3.31998 13.6666 6.99998 13.6666C10.68 13.6666 13.6666 10.6799 13.6666 6.99992C13.6666 3.31992 10.68 0.333252 6.99998 0.333252ZM6.99998 12.3333C4.05998 12.3333 1.66665 9.93992 1.66665 6.99992C1.66665 4.05992 4.05998 1.66659 6.99998 1.66659C9.93998 1.66659 12.3333 4.05992 12.3333 6.99992C12.3333 9.93992 9.93998 12.3333 6.99998 12.3333Z" fill="#9873FF" />
+        </svg> Добавить контакт</button>
+      </div>
+      <button class="save" id="save-change"> Сохранить </button>
+      <button class="cancel" id="cancel-change"> Отмена </button>
+      </div>
+    </div>
+  </div>
+</form>
+</body>
+</html>
